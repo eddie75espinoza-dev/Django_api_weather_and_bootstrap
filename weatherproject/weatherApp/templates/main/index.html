@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
+  <link rel="shortcut icon" type="image/ico" href= "{% static 'favicon/favicon.ico' %}"/>
+  <link class="cdn_link_light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.6.1/flatly/bootstrap.min.css" integrity="sha512-NnOXwTfcNBeRenMzrDACGwxbThjRcI5H8jvM+VDKKkXA6wkAb2c0t1YgDXWmW2TNX1CUSe6Ma6HXYG2J1rBGDQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>eWeather App</title>
+</head>
+<body class="light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <div class="container-fluid">
+        <img src="{% static 'images/logoE256blue.png'%}" alt="" class="image" style="width: 50px;">
+        <a href="../" class="navbar-brand">Weather App <span><strong> - Django Framework</strong></span></a>
+      </div>
+    </nav>
+    <br><br>
+    <div class="jumbotron" id="jumbotron" style="text-align: center;">
+      <h1 class="display">eWeather Desktop App</h1>
+      <h5>Using Python language, Django Framework and Bootstrap</h5><br>
+      <h4>by Eddie75</h4><br>
+      <img src="{% static 'images/weather.png'%}" alt="" class="image" style="width: 100px; margin-bottom: -50px;">
+    </div>
+    <nav class="navbar navbar-dark bg-primary justify-content-center">
+        <form class="col-md-8" method="POST">
+          {% csrf_token %}
+          <div class="input-group" style="justify-content: center;">
+            <input class="form-control" type="search" name="city" placeholder="Choose your city..." aria-label="Search">
+            <div class="input-group-btn">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </div>
+          </div>
+        </form>
+    </nav>
+    <br><br>
+    <div class="row">
+      {% if country_code and coordinate and temp and pressure and humidity %}
+      <div class="col d-flex justify-content-center" style="padding-bottom: 20px;">
+        <div class="card text-white bg-light mb-6">
+          <div class="card-body">
+            <h3>{{temp}} <span><img src="http://openweathermap.org/img/w/{{icon}}.png" alt="Image" style="width: 75px;"></span></h3>
+            <h4 style="text-align: center;">{{main}}</h4>
+            <h4>{{name}}, <span>{{country_code}}</span></h4>
+            <h4><span class="badge badge-primary">Description:</span> {{description}}</h4>
+            <h4><span class="badge badge-primary">Pressure:</span> {{pressure}} hPa</h4>
+            <h4><span class="badge badge-primary">Humidity:</span> {{humidity}} %</h4>
+            <h4><span class="badge badge-primary">Coordinates:</span> {{coordinate}}</h4>
+          </div>
+        </div>
+    </div> 
+      {% endif %}
+    </div>
+    <div class="weather-footer">
+      <div class="toggle">
+          <span>Alternate Bootstrap Mode</span>
+          <div class="dark-mode-switch" id="dark-mode-switch">
+              <div class="dark-mode-switch-ident"></div>
+          </div>
+      </div>
+    </div>
+    <script src="{% static 'js/toggle.js' %}"></script>
+</body>
+</html>
