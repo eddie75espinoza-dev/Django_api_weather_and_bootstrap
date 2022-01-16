@@ -1,2 +1,2 @@
 # Django api weather and bootstrap 
-##desktop app with alternate bootstrap mode
+## desktop app with alternate bootstrap mode
